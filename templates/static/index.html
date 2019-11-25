@@ -1,0 +1,116 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src="https://fb.me/react-0.14.8.min.js"></script>
+	<script src="https://fb.me/react-dom-0.14.8.min.js"></script>
+
+    <title>ADBI-topK</title>
+  </head>
+  <body>
+  	<div id="Home">
+  		<div class="jumbotron">
+  			<h1 class="display-4 text-center">Search hot topic in Twitter</h1>
+  			<p class="lead text-center">Find the top K words base on your query!</p>
+  			<hr class="my-4">
+  			<p class="text-center">You can search by...</p>
+
+  			<div class="card-group" >
+
+  				<div class="card" >
+    				<i class="fas fa-language fa-7x text-center" style="padding-top: 20px; color: blue;"></i>
+    				<div class="card-body">
+      					<h5 class="card-title text-center">Term</h5>
+    				</div>
+  				</div>
+
+			
+  				<div class="card">
+  				
+    				<i class="fas fa-map-marker-alt fa-7x text-center " style="padding-top: 20px; color: red;"></i>
+    				<div class="card-body">
+      					<h5 class="card-title text-center">Location</h5>
+    				</div>
+    			
+  				</div>
+  			
+  				<div class="card">
+    				<i class="fas fa-clock fa-7x text-center" style="padding-top: 20px; color: green;" ></i>
+    				<div class="card-body">
+      					<h5 class="card-title text-center">Time Range</h5>
+    				</div>
+  				</div>
+			</div>
+			<div class="col text-center" style="margin-top: 50px;">
+				
+  					<a class="btn btn-primary btn-lg " href="#Search" role="button ">Get Started!</a> 
+  			</div>
+		</div>
+	</div>
+	<div id="Search">
+		<h1 class="text-center">Your query</h1>
+		<div class="container shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 30px;">
+	
+    		<form>
+  				<div class="form-group">
+    				<label for="term-input-box">Term Query:</label>
+    				<input type="text" class="form-control" id="term-input-box" placeholder="Enter term">
+  				</div>
+  				<div class="form-group">
+    				<label for="place-input-box">Geo Query:</label>
+    				<input type="text" class="form-control" id="place-input-box" placeholder="Enter place">
+  				</div>
+  		
+  				<label>Range Query:</label>
+  				<div class="form-row">
+  					<div class="form-group col-md-6">
+    					<label for="start-time-input-box">Start time</label>
+    					<input type="text" class="form-control" id="start-time-input-box" placeholder="Start time">
+    				</div>
+    				<div class="form-group col-md-6">
+    					<label for="end-time-input-box">End time</label>
+    					<input type="text" class="form-control" id="end-time-input-box" placeholder="End time">
+    				</div>
+    			</div>
+
+  				<div class="form-group">
+    				<label for="k-input-box">How many results:</label>
+    				<input type="text" class="form-control" id="k-input-box" placeholder="Enter k" value="10">
+  				</div>
+
+  				<button id="go-button" type="button" class="btn btn-primary" onclick="getAndRenderTopK()">GO!</button>
+				<button id="loading-button" class="btn btn-primary" type="button" disabled style="display: none;">
+					<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+					  Loading... This may take a while. Please sit back and relax!
+				</button>
+			</form>
+		</div>
+
+	</div>
+
+
+	<div id="result-container" style="display: none;">
+		<h1 class="text-center">Result</h1>
+		<div class="container">
+			<div class="table-responsive" id="top-results-table"></div>
+		</div>
+		
+		<svg class="chart"></svg>
+	</div>
+    
+  </body>
+
+  <script src="{{ url_for('static', filename = 'main.js') }}"></script>
+</html>
