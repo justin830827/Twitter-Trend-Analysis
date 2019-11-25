@@ -81,3 +81,6 @@ The interface should be intuitive. There are few gatchas though.
 
 Once you submit a query, you will be able to see Spark logs in the shell where you launched the server.
 Please watch our recorded demo for more details.
+
+## Demo video
+Please see the live demo video on this [link](https://www.youtube.com/watch?v=KMEO6mVOHWA&feature=youtu.be)
