@@ -1,4 +1,4 @@
-flask==1.0.2
+flask==2.3.2
 kafka-python==1.4.5
 elasticsearch==6.3.1
 tweepy==3.7.0
